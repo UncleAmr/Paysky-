@@ -1,0 +1,129 @@
+package behance;
+
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.Dimension;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.TimeoutException;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import dev.failsafe.internal.util.Assert;
+
+public class buyProduct {
+    public static void main(String[] args) throws InterruptedException {
+        // Set the path to the ChromeDriver executable
+        System.setProperty("webdriver.chrome.driver", "D:/app/New folder/chromedriver-win64/chromedriver.exe");
+
+     // Create a new instance of the Chrome driver
+        ChromeOptions option = new ChromeOptions();
+        option.addArguments("--remote-allow-origins=");
+        ChromeDriver driver = new ChromeDriver(option);
+
+    //Put a Implicit wait, this means that any search for elements on the page could take the time the implicit wait is set for before throwing exception
+    driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+
+ 
+    driver.get("https://practicesoftwaretesting.com//");
+    
+    int width = 1536; // for the browser
+    int height = 824;// for the browser
+  
+    Dimension dimension = new Dimension(width, height);
+    driver.manage().window().setSize(dimension);
+    Thread.sleep(3000);
+    
+    WebElement element = driver.findElement(By.xpath("/html/body/app-root/div/app-overview/div[3]/div[2]/div[1]/a[2]/div[1]/img"));
+    // Click the element
+    element.click();
+    Thread.sleep(5000);
+    
+    WebElement element2 = driver.findElement(By.xpath("//*[@id=\"btn-add-to-cart\"]"));
+    // Click the element
+    element2.click();
+    Thread.sleep(9000);
+    
+    WebElement element3 = driver.findElement(By.xpath("//*[@id=\"lblCartCount\"]"));
+    // Click the element
+    element3.click();
+    Thread.sleep(5000);
+    
+    WebElement element4 = driver.findElement(By.xpath("/html/body/app-root/div/app-checkout/aw-wizard/div/aw-wizard-step[1]/app-cart/div/div/button"));
+    // Click the element
+    element4.click();
+    Thread.sleep(5000);
+    
+    WebElement element5 = driver.findElement(By.xpath("//*[@id=\"email\"]"));
+    // Click the element
+    element5.click();
+    element5.sendKeys("ibrahim.amr1@hotmail.com");// typing
+    Thread.sleep(2000);
+    
+    WebElement element6 = driver.findElement(By.xpath("//*[@id=\"password\"]"));
+    // Click the element
+    element6.click();
+    element6.sendKeys("AmrAmr12@");// typing
+    Thread.sleep(2000);
+    
+    WebElement element7 = driver.findElement(By.xpath("/html/body/app-root/div/app-checkout/aw-wizard/div/aw-wizard-step[2]/app-login/div/div/div/div/form/div[3]/input"));
+    // Click the element
+    element7.click();
+    Thread.sleep(5000);
+    
+    WebElement element8 = driver.findElement(By.xpath("/html/body/app-root/div/app-checkout/aw-wizard/div/aw-wizard-step[2]/app-login/div/div/div/div/button"));
+    // Click the element
+    element8.click();
+    Thread.sleep(5000);
+    
+    WebElement element9 = driver.findElement(By.xpath("/html/body/app-root/div/app-checkout/aw-wizard/div/aw-wizard-step[3]/app-address/div/div/div/div/button"));
+    // Click the element
+    element9.click();
+    Thread.sleep(5000);
+    
+    WebElement element10 = driver.findElement(By.xpath("//*[@id=\"payment-method\"]"));
+    // Click the element
+    element10.click();
+    Thread.sleep(5000);
+    
+    WebElement element11 = driver.findElement(By.xpath("//*[@id=\"payment-method\"]/option[3]"));
+    // Click the element
+    element11.click();
+    Thread.sleep(5000);
+  
+    WebElement element12 = driver.findElement(By.xpath("/html/body/app-root/div/app-checkout/aw-wizard/div/aw-wizard-completion-step/app-payment/div/div/div/div/button"));
+    // Click the element
+    element12.click();
+    Thread.sleep(5000);
+    
+    WebElement element13 = driver.findElement(By.xpath("/html/body/app-root/div/app-checkout/aw-wizard/div/aw-wizard-completion-step/app-payment/div/div/div/div/button"));
+    // Click the element
+    element13.click();
+    Thread.sleep(5000);
+    
+    try {
+        // Find the element using XPath
+        WebElement msg = driver.findElement(By.xpath("//*[@id=\"order-confirmation\"]"));
+
+        // Get the actual text and remove leading/trailing whitespace
+        String actualText = msg.getText().trim();
+
+        // Expected text
+        String expectedText = "Thanks for your order!";
+
+        // Verify the text is present 
+        if (actualText.contains(expectedText)) {
+            System.out.println("Expected message found!");
+        } else {
+            System.out.println("message text does not match expected value.");
+        }
+
+    } catch (NoSuchElementException e) {
+        System.out.println("message element not found");
+    } 
+       Thread.sleep(5000);
+    }}
